@@ -57,15 +57,15 @@
 
     <script>
 
+        let a = document.getElementById("a")
+        let b = document.getElementById("b")
+        let c = document.getElementById("c")
+        let output = document.getElementById("output")
+
         // reset
 
         function reset() {
-            let a = document.getElementById("a")
-            let b = document.getElementById("b")
-            let c = document.getElementById("c")
-            let output = document.getElementById("output")
             a.value=b.value=c.value=output.innerHTML = ""
-
             a.focus()
         }
 
@@ -124,14 +124,21 @@
         // output
 
         function factorTrinomial() {
-            av = parseFloat(a.value); if (isNaN(av)) {av = 1}
-            bv = parseFloat(b.value); if (isNaN(bv)) {bv = 0}
-            cv = parseFloat(c.value); if (isNaN(cv)) {cv = 0}
+            let av = parseFloat(a.value); if (isNaN(av)) {av = 1}
+            let bv = parseFloat(b.value); if (isNaN(bv)) {bv = 0}
+            let cv = parseFloat(c.value); if (isNaN(cv)) {cv = 0}
             let r1 = -(-bv+Math.sqrt(bv*bv-4*av*cv))/(2*av)
             let r2 = -(-bv-Math.sqrt(bv*bv-4*av*cv))/(2*av)
 
-            output.innerHTML =
-                iDontLikeOnes(parseFloat(av)) + "(x" + sign(r1) + ")(x" + sign(r2) + ")"
+            r1 = sign(r1)
+            r2 = sign(r2)
+
+            if (isNaN(r1) || isNaN(r2)) {
+                output.innerHTML = "not factorable"
+            } else {
+                output.innerHTML =
+                    iDontLikeOnes(av) + "(x" + r1 + ")(x" + r2 + ")"
+            }
         }
     </script>
 

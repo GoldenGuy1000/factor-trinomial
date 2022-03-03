@@ -95,11 +95,11 @@
         }
 
         c.onkeydown = function(key) {
-            if (key.key === "Enter") {
+            if (key.key === "Enter" || key.key === " ") {
                 factorTrinomial()
             }
         }
-
+/*
         a.onkeyup = function() {a.value = cleanNonNumbers(a.value)}
         b.onkeyup = function() {b.value = cleanNonNumbers(b.value)}
         c.onkeyup = function() {c.value = cleanNonNumbers(c.value)}
@@ -107,9 +107,9 @@
         // formatting
 
         function cleanNonNumbers(text) {
-            return text.replace(/[^0-9\-]/g,'');
+            return text.replace(/[^0-9-]/g,'');
         }
-
+*/
         function sign(number) {
             if (number > 0) {
                 return "+" + number

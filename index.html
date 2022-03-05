@@ -7,7 +7,7 @@
 </head>
 
 <style>
-    input[type=number] {
+    input[type=text] {
         max-width: 30px;
         padding: 0;
         background-color: #252525;
@@ -47,11 +47,11 @@
             </div>
 
             <div style="padding-top: 20px">
-                <label for="a"></label><input type="number" id="a" name="a" placeholder="a">
+                <label for="a"></label><input type="text" id="a" name="a" placeholder="a">
                 x² +
-                <label for="b"></label><input type="number" id="b" name="b" placeholder="b">
+                <label for="b"></label><input type="text" id="b" name="b" placeholder="b">
                 x +
-                <label for="c"></label><input type="number" id="c" name="c" placeholder="c" style="text-align: left">
+                <label for="c"></label><input type="text" id="c" name="c" placeholder="c" style="text-align: left">
             </div>
 
             <div id="output" style="padding-top: 40px">
@@ -84,22 +84,25 @@
 
         a.onkeydown = function(key) {
             if (key.key === "Enter" || key.key === " ") {
-                b.focus()
+                a.value = cleanNonNumbers(a.value);
+                b.focus();
             }
         }
 
         b.onkeydown = function(key) {
             if (key.key === "Enter" || key.key === " ") {
-                c.focus()
+                b.value = cleanNonNumbers(b.value);
+                c.focus();
             }
         }
 
         c.onkeydown = function(key) {
             if (key.key === "Enter" || key.key === " ") {
-                factorTrinomial()
+                c.value = cleanNonNumbers(c.value);
+                factorTrinomial();
             }
         }
-/*
+
         a.onkeyup = function() {a.value = cleanNonNumbers(a.value)}
         b.onkeyup = function() {b.value = cleanNonNumbers(b.value)}
         c.onkeyup = function() {c.value = cleanNonNumbers(c.value)}
@@ -107,9 +110,9 @@
         // formatting
 
         function cleanNonNumbers(text) {
-            return text.replace(/[^0-9-]/g,'');
+            return text.replace(/(?!^)-|[^0-9-]/g,'');
         }
-*/
+
         function sign(number) {
             if (number > 0) {
                 return "+" + number
